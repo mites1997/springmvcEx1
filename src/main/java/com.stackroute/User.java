@@ -1,26 +1,29 @@
 package com.stackroute;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+@Component
 public class User {
+    @Autowired
+    private StringBuilder message;
+    public User()
+    {
 
-    private String message;
+    }
 
 
 
-    public User(String message) {
+    public User(StringBuilder message) {
         this.message = message;
     }
 
-    public String getMessage() {
+    public StringBuilder getMessage() {
         return message;
     }
 
-    public User(String message, int id) {
-        this.message = message;
-
-    }
 
     @Override
     public String toString() {
@@ -28,4 +31,11 @@ public class User {
                 "message='" + message + '\'' +
                 '}';
     }
-}
+        @Bean
+        public StringBuilder name()
+        {
+             StringBuilder name=new StringBuilder("Welcome to Stackroute");
+            return name;
+        }
+    }
+

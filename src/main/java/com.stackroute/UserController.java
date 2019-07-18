@@ -1,5 +1,6 @@
 package com.stackroute;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,11 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class UserController {
 
-    User user=new User("Welcome to Stackroute");
+
    @RequestMapping("/*")
     public ModelAndView welcome()
    {
       // User user=new User("Welcome to Stackroute");
+       AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(User.class);
+       User user=context.getBean("user",User.class);
        ModelAndView mv=new ModelAndView("index");
        mv.addObject("message",user.getMessage());
 
